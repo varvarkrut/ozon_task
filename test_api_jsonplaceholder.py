@@ -28,6 +28,7 @@ def test_get_comment():
     response = requests.get('https://jsonplaceholder.typicode.com/comments/1')
     assert (response.json() == correct_response_json), "The response is not correct"
 
+
 def test_get_album():
     json_correct_string = r"""
     {"userId": 1,
@@ -41,18 +42,30 @@ def test_get_album():
 
 
 def test_post_post():
-    data = {'title':'foo','body':'bar','userId':1,'id':101}
-    response = requests.post('https://jsonplaceholder.typicode.com/posts',json=data)
+    data = {'title': 'foo', 'body': 'bar', 'userId': 1, 'id': 101}
+    response = requests.post(
+        'https://jsonplaceholder.typicode.com/posts',
+        json=data)
     assert (response.json() == data), "The response is not correct"
-    
+
 
 def test_post_comment():
-    data ={"name":"foo","emal":"bar","body":"test", "id":501,"postID":1}
-    response = requests.post('https://jsonplaceholder.typicode.com/comments',json=data)
+    data = {
+        "name": "foo",
+        "emal": "bar",
+        "body": "test",
+        "id": 501,
+        "postID": 1}
+    response = requests.post(
+        'https://jsonplaceholder.typicode.com/comments',
+        json=data)
     assert (response.json() == data), "The response is not correct"
 
 
 def test_post_album():
-    data ={"userID":10,"id":101,"title":"foo"}
-    response = requests.post('https://jsonplaceholder.typicode.com/albums',json=data)
+    data = {"userID": 10, "id": 101, "title": "foo"}
+    response = requests.post(
+        'https://jsonplaceholder.typicode.com/albums',
+        json=data)
     assert (response.json() == data), "The response is not correct"
+
