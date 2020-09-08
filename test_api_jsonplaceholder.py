@@ -16,7 +16,7 @@ def test_get_post():
     assert (response.json() == correct_response_json), "The response is not correct"
 
 
-def test_get_post_incorrect_url():
+def test_get_post_with_incorrect_url():
     response = requests.get(
         'https://jsonplaceholder.typicode.com/posts/3636%2')
     assert (response.status_code == 404), "The response is not correct"
