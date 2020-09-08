@@ -39,7 +39,7 @@ def test_post_valid_post():
     assert (response.json() == data), "The response is not correct"
 
 
-def test_post_invalid_post():
+def test_post_with_invalid_id_field():
     data = {
         "title": "foo",
         "body": "bar",
