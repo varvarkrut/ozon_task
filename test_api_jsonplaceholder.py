@@ -11,8 +11,6 @@ def test_get_post():
     """
     correct_response_json = json.loads(json_correct_string)
     response = requests.get('https://jsonplaceholder.typicode.com/posts/1')
-    print(correct_response_json)
-    print(response.json())
     assert (response.json() == correct_response_json), "The response is not correct"
 
 
