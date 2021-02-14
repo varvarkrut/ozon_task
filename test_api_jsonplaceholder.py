@@ -16,7 +16,7 @@ def test_get_post():
 
 def test_get_post_with_incorrect_url():
     response = requests.get(
-        'https://jsonplaceholder.typicode.com/posts/3636%2')
+        'https://jsonplaceholder.typicode.com/posts/3636%2',headers={'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Mobile Safari/537.36'})
     assert (response.status_code == 404), "The response is not correct"
 
 
@@ -39,15 +39,22 @@ def test_post_valid_post():
 
 def test_post_with_invalid_id_field():
     data = {
-        "title": "foo",
+        "title": "",
         "body": "bar",
         "userId": 10,
-        "id": ""}
+        "id": -1}
+    correct_response = {
+        "title": "",
+        "body": "bar",
+        "userId": 10,
+        "id": 101
+    }
     response = requests.post(
         'https://jsonplaceholder.typicode.com/posts',
         json=data)
-    assert (response.status_code ==
-            400), f"Was recieved {response.status_code} code, while 400 expected"
+    print(response.json())
+    assert (response.json() ==
+            correct_response), f"The response is not correct"
 
 
 def test_post_empty_post():
